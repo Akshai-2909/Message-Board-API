@@ -1,6 +1,7 @@
 const controller = require("./Controller");
 const http = require("http");
 const resp = require("./resp");
+require('dotenv').config();
 
 const server = http.createServer((req, res) => {
   if (req.url == "/") {
@@ -83,6 +84,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || 80, () => {
   console.log("Server is running on 3000");
 });
