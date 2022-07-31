@@ -81,6 +81,10 @@ const server = http.createServer((req, res) => {
       resp.methodNotAllowed(res);
       return;
     }
+  }else{
+      res.statusCode = 405;
+      res.write(JSON.stringify({"message":"Requested endpoint not found"}));
+	  res.end();
   }
 });
 
