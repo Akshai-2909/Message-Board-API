@@ -1,6 +1,7 @@
 const controller = require("./Controller");
 const http = require("http");
 const resp = require("./resp");
+require('dotenv').config();
 
 const server = http.createServer((req, res) => {
   if (req.url == "/") {
@@ -80,9 +81,13 @@ const server = http.createServer((req, res) => {
       resp.methodNotAllowed(res);
       return;
     }
+  }else{
+      res.statusCode = 405;
+      res.write(JSON.stringify({"message":"Requested endpoint not found"}));
+	  res.end();
   }
 });
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || 80, () => {
   console.log("Server is running on 3000");
 });
